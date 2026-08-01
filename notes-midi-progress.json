@@ -1,0 +1,29 @@
+{
+ "treble:G4": {
+  "attempts": 3,
+  "correct": 1,
+  "fast_streak": 0,
+  "avg_time": 1.78,
+  "mastered": false,
+  "lapses": 2,
+  "last_seen": "2026-07-31 23:34:31"
+ },
+ "treble:D4": {
+  "attempts": 3,
+  "correct": 0,
+  "fast_streak": 0,
+  "avg_time": null,
+  "mastered": false,
+  "lapses": 3,
+  "last_seen": "2026-07-31 23:34:34"
+ },
+ "treble:C5": {
+  "attempts": 2,
+  "correct": 1,
+  "fast_streak": 0,
+  "avg_time": 3.504,
+  "mastered": false,
+  "lapses": 1,
+  "last_seen": "2026-07-31 23:34:29"
+ }
+}

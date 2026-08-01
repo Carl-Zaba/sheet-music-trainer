@@ -1,0 +1,5 @@
+#!/bin/sh
+# Launcher: runs the note trainer no matter which directory you are in.
+# Usage:  ./notedrill              ./notedrill sprint      ./notedrill stats
+#         ./notedrill --decks treble
+exec python3 "$(dirname "$0")/notes.py" "$@"
