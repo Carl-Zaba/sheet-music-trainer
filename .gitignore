@@ -1,6 +1,9 @@
 __pycache__/
 *.pyc
 .claude/
+
+# personal training data — not part of the program
 notes-progress.json
 notes-midi-progress.json
 notes-settings.json
+sticky-note-drill.md
