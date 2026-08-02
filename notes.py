@@ -15,6 +15,8 @@ Usage (bare words work — no --flags needed for the common cases):
   notedrill extended            # far ledger lines (treble-high, bass-low, ...)
   notedrill sprint              # 60s scored run
   notedrill sprint bass         # sprint on one clef
+  notedrill core midi           # answer by playing a MIDI keyboard
+  notedrill midi                # on its own: list ports, echo-test only
   notedrill stats               # mastery progress and trouble notes
   notedrill reset               # wipe saved note progress
   notedrill --minutes 5 --level automatic   # full flags still available
@@ -736,9 +738,12 @@ def rewrite_argv(argv):
 
     cmd = None
     decks, flags = [], []
+    midi_word = False
     for tok in head:
         t = tok.lower()
-        if t in SUBCOMMANDS and cmd is None:
+        if t == "midi":
+            midi_word = True
+        elif t in SUBCOMMANDS and cmd is None:
             cmd = t
         elif t == "grand":
             flags.append("--grand")
@@ -749,8 +754,17 @@ def rewrite_argv(argv):
         else:
             sys.exit(f"Unknown word '{tok}'. Try a deck "
                      f"({', '.join(NOTE_DECKS)}), a shortcut "
-                     f"({', '.join(DECK_ALIASES)}, {TROUBLE}, all, grand), "
-                     f"or a command ({', '.join(SUBCOMMANDS)}).")
+                     f"({', '.join(DECK_ALIASES)}, {TROUBLE}, all, grand, "
+                     f"midi), or a command ({', '.join(SUBCOMMANDS)}).")
+
+    # A lone `midi` is the echo-test subcommand; `midi` next to anything
+    # else means "answer on the MIDI keyboard" (the --midi flag), so
+    # `notedrill core midi` starts a MIDI drill rather than erroring.
+    if midi_word:
+        if cmd is None and not decks and not flags:
+            cmd = "midi"
+        else:
+            flags.append("--midi")
 
     new = [cmd] if cmd else []
     if decks:

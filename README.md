@@ -87,9 +87,13 @@ python3 -m pip install --user mido python-rtmidi
 ```
 
 ```bash
-notedrill midi            # list ports, echo-test the keyboard
-notedrill core --midi     # play the answers instead of typing them
+notedrill midi            # on its own: list ports, echo-test the keyboard
+notedrill core midi       # with a deck: drill, answering on the keyboard
+notedrill core --midi     # same thing, spelled as a flag
 ```
+
+`midi` alone is the echo test — it prints the name of each key you press
+and never shows a card. Put it next to a deck to actually drill.
 
 Exact pitch is required: E4 on the card means the E above middle C. For a
 keyboard too small to span a deck, declare its range once and only
